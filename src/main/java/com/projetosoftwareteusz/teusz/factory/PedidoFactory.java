@@ -4,7 +4,9 @@ import com.projetosoftwareteusz.teusz.entities.TipoPedido;
 import com.projetosoftwareteusz.teusz.pedido.IPedido;
 import com.projetosoftwareteusz.teusz.pedido.PedidoComum;
 import com.projetosoftwareteusz.teusz.pedido.PedidoExpresso;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PedidoFactory {
 
 
@@ -14,7 +16,7 @@ public class PedidoFactory {
         } else if (tipo == TipoPedido.EXPRESSO) {
             return new PedidoExpresso();
         }
-        return null;
+        throw new IllegalArgumentException("Tipo de pedido desconhecido: " + tipo);
     }
 
 }

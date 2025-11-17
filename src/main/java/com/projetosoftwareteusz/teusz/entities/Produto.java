@@ -1,11 +1,21 @@
 package com.projetosoftwareteusz.teusz.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Produto {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String nome;
     private double preco;
 
+    public Produto() {}
+    
     public Produto(int id, String nome, double preco) {
         this.id = id;
         this.nome = nome;

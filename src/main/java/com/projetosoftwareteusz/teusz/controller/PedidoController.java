@@ -31,7 +31,7 @@ public class PedidoController {
     @PostMapping
     public ResponseEntity<Pedido> criarPedido(@RequestBody CriarPedidoRequest request) {
         
-        Pedido novoPedido = pedidoService.criarPedido(request.getTipo(), request.getItens());
+        Pedido novoPedido = pedidoService.criarPedido(request);
         return new ResponseEntity<>(novoPedido, HttpStatus.CREATED);
     }
 
