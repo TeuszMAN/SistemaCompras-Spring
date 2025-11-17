@@ -1,17 +1,13 @@
 package com.projetosoftwareteusz.teusz.service;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.projetosoftwareteusz.teusz.Logistica.ILogistica;
-import com.projetosoftwareteusz.teusz.Logistica.LogisticaAdapter;
-import com.projetosoftwareteusz.teusz.config.ConfiguracaoSistema;
 import com.projetosoftwareteusz.teusz.dto.CriarPedidoRequest;
-import com.projetosoftwareteusz.teusz.entities.ItemPedido;
 import com.projetosoftwareteusz.teusz.entities.Pedido;
 import com.projetosoftwareteusz.teusz.entities.StatusPedido;
 import com.projetosoftwareteusz.teusz.entities.TipoPedido;
@@ -41,11 +37,14 @@ public class PedidoService {
                 "Campo 'tipo' é obrigatório (COMUM ou EXPRESSO)"
             );
         }
+        
         Pedido novoPedido = new Pedido();
         novoPedido.setDataCriacao(new Date());
         novoPedido.setStatus(StatusPedido.NOVO);
         novoPedido.setItens(request.getItens());
+        
         Pedido pedidoSalvo = pedidoRepository.save(novoPedido);
+        
         IPedido estrategiaPedido = pedidoFactory.criarPedido(tipo);
         estrategiaPedido.processarPedido(pedidoSalvo);
 

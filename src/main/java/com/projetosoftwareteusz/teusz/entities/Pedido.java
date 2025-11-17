@@ -6,7 +6,7 @@ import java.util.List;
 
 import jakarta.persistence.*;
 
-@Entity // 3. Avisa ao JPA que esta classe é uma tabela
+@Entity
 @Table(name = "pedidos") 
 public class Pedido {
 

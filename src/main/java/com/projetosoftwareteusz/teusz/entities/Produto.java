@@ -22,7 +22,7 @@ public class Produto {
         this.preco = preco;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -40,6 +40,10 @@ public class Produto {
 
     public void setPreco(double preco) {
         this.preco = preco;
+    }
+    
+    public void setId(Integer id) {
+        this.id = id;
     }
     
     public String toString() {
