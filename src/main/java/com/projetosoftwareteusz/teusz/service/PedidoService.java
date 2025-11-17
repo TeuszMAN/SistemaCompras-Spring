@@ -34,12 +34,19 @@ public class PedidoService {
     }
 
     public Pedido criarPedido(CriarPedidoRequest request) {
+        TipoPedido tipo = request.getTipo();
+        if (tipo == null) {
+            throw new org.springframework.web.server.ResponseStatusException(
+                org.springframework.http.HttpStatus.BAD_REQUEST,
+                "Campo 'tipo' é obrigatório (COMUM ou EXPRESSO)"
+            );
+        }
         Pedido novoPedido = new Pedido();
         novoPedido.setDataCriacao(new Date());
         novoPedido.setStatus(StatusPedido.NOVO);
         novoPedido.setItens(request.getItens());
         Pedido pedidoSalvo = pedidoRepository.save(novoPedido);
-        IPedido estrategiaPedido = pedidoFactory.criarPedido(request.getTipo());
+        IPedido estrategiaPedido = pedidoFactory.criarPedido(tipo);
         estrategiaPedido.processarPedido(pedidoSalvo);
 
         pedidoSalvo.setStatus(StatusPedido.EM_PROCESSAMENTO);

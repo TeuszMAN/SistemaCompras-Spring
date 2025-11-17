@@ -29,6 +29,10 @@ public class ItemPedido {
         return produto;
     }
 
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
     public int getQuantidade() {
         return quantidade;
     }
